@@ -38,7 +38,7 @@ func New(secret string) *HCaptcha {
 func (h *HCaptcha) Verify(response, remoteip string) (*Response, error) {
 	values := url.Values{"secret": {h.Secret}, "response": {response}}
 	if remoteip != "" {
-		values.Set("remoteip", remoteip.String())
+		values.Set("remoteip", remoteip)
 	}
 	resp, err := http.PostForm(h.HCaptchaURL, values)
 	if err != nil {
