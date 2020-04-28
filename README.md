@@ -8,12 +8,11 @@ The library gives a struct set up to verify the challenges of a given private ke
 ```go
 import "github.com/meyskens/go-hcaptcha"
 
-func handleInvite(w http.ResponseWriter, r *http.Request) {
+func handleRequest(w http.ResponseWriter, r *http.Request) {
     hcaptchaResponse, _ := r.Form["h-captcha-response"]
-	hc := hcaptcha.New("<insert secret key>")
+    hc := hcaptcha.New("<insert secret key>")
     //Get IP from RemoteAddr
     ip, _, err := net.SplitHostPort(r.RemoteAddr)
-
     
     resp, err := hc.Verify(hcaptchaResponse, ip)
     // handle errors please!
