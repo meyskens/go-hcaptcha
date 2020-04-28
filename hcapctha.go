@@ -6,7 +6,6 @@ import (
 	"io/ioutil"
 	"net/http"
 	"net/url"
-	"time"
 )
 
 type HCaptcha struct {
@@ -18,7 +17,7 @@ type Response struct {
 	// Success indicates if the challenge was passed
 	Success bool `json:"success"`
 	// ChallengeTs is the timestamp of the captcha
-	ChallengeTs time.Time `json:"challenge_ts"`
+	ChallengeTs string `json:"challenge_ts"`
 	// Hostname is the hostname of the passed captcha
 	Hostname string `json:"hostname"`
 	// Credit indicates  whether the response will be credited (optional)
