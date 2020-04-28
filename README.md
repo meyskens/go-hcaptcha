@@ -9,12 +9,13 @@ The library gives a struct set up to verify the challenges of a given private ke
 import "github.com/meyskens/go-hcaptcha"
 
 func handleRequest(w http.ResponseWriter, r *http.Request) {
+    r.ParseForm()
     hcaptchaResponse, _ := r.Form["h-captcha-response"]
     hc := hcaptcha.New("<insert secret key>")
     //Get IP from RemoteAddr
     ip, _, err := net.SplitHostPort(r.RemoteAddr)
     
-    resp, err := hc.Verify(hcaptchaResponse, ip)
+    resp, err := hc.Verify(hcaptchaResponse[0], ip)
     // handle errors please!
     if resp.Success {
         // captcha OK!
